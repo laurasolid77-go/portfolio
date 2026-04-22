@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHAE YOUNG GO | Academic Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="profile-img-container">
+                <img src="images/profile.jpg" alt="CHAE YOUNG GO" class="profile-img" onerror="this.src='https://via.placeholder.com/200?text=Profile';">
+            </div>
+            <div class="header-info">
+                <h1 id="user-name">Loading...</h1>
+                <p class="title" id="user-title"></p>
+                <div class="contact-bar" id="contact-bar"></div>
+            </div>
+        </header>
+
+        <!-- Summary Section -->
+        <section class="glass-card">
+            <h2>🔍 Research Interest & Summary</h2>
+            <div class="summary-content">
+                <div id="interests-list" style="margin-bottom: 24px; color: var(--primary); font-weight: 700; font-size: 1.1rem;"></div>
+                <p id="user-summary" style="line-height: 1.8; opacity: 0.9;"></p>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="glass-card">
+            <h2>🎓 Education</h2>
+            <div class="timeline" id="education-timeline"></div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="glass-card">
+            <h2>💼 Experience</h2>
+            <div class="timeline" id="experience-timeline"></div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="glass-card">
+            <h2>🛠️ Technical Skills</h2>
+            <div class="skills-grid" id="skills-grid"></div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="glass-card">
+            <h2>🚀 Projects</h2>
+            <div id="projects-list"></div>
+        </section>
+
+        <!-- Publications Section -->
+        <section class="glass-card">
+            <h2>📚 Publications</h2>
+            <div class="pub-list" id="publications-list"></div>
+        </section>
+        
+        <!-- Scholarships Section -->
+        <section class="glass-card">
+            <h2>🏆 Scholarships</h2>
+            <div id="scholarships-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px;"></div>
+        </section>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
