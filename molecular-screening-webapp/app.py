@@ -1,9 +1,14 @@
 import streamlit as st
 import pandas as pd
 import os
+from pathlib import Path
 from rdkit import Chem
 from rdkit.Chem import Draw, Descriptors, rdMolDescriptors
 from io import BytesIO
+
+# 경로 설정: 현재 파일(app.py)의 위치를 기준으로 데이터 경로를 계산합니다.
+BASE_DIR = Path(__file__).resolve().parent
+DATA_PATH = BASE_DIR / "data" / "processed" / "molecular_library.csv"
 
 # 페이지 설정
 st.set_page_config(page_title="Molecular Screening Prototype", layout="wide")
@@ -155,10 +160,12 @@ def get_filter_values_synced(df, col_name, label):
 
 def main():
     st.title("🔬 Molecular Screening Prototype")
-    lib_path = "data/processed/molecular_library.csv"
-    df = load_data(lib_path)
+    
+    # 데이터 로드
+    df = load_data(DATA_PATH)
     if df is None:
-        st.error(f"데이터 파일 부재: `{lib_path}`")
+        st.error(f"❌ 데이터 파일 부재: `{DATA_PATH}`")
+        st.info("배포 환경에서 파일 경로가 올바른지 확인해주세요.")
         return
     st.info(f"현재 라이브러리 규모: 총 **{len(df)}**개 분자")
 
