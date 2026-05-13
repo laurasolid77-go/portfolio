@@ -507,6 +507,7 @@ def render_screening_page():
     if st.sidebar.button(L["apply_filters"], type="primary", use_container_width=True):
         st.session_state["filters_applied"] = True
         st.session_state["current_page"] = 1
+        st.rerun()
 
     if st.session_state["filters_applied"]:
         filtered_df = df.copy()
