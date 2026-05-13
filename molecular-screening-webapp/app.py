@@ -364,111 +364,112 @@ def render_screening_page():
             st.session_state.page = "report"
             st.rerun()
 
-    # 2. Hero Row: Large Visual
-    v_col1, v_col2 = st.columns([1, 2])
-    with v_col1:
-        st.write("") # Placeholder for spacing where short_desc was
+    # 2. Hero Row: Large Visual (Hide if filters applied)
+    if not st.session_state["filters_applied"]:
+        v_col1, v_col2 = st.columns([1, 2])
+        with v_col1:
+            st.write("") # Placeholder for spacing where short_desc was
+        
+        with v_col2:
+            # High-Fidelity Dynamic Atom Animation (Reflects 3D Render Style)
+            molecule_html = """
+            <style>
+                .atom-scene {
+                    width: 100%;
+                    height: 450px;
+                    background: #ffffff;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    perspective: 1500px;
+                    margin-top: 50px;
+                    margin-left: -160px; /* Shifted more left */
+                    overflow: hidden;
+                }
+                .atom-wrapper {
+                    position: relative;
+                    width: 300px;
+                    height: 300px;
+                    transform-style: preserve-3d;
+                }
+                
+                /* Realistic 3D Nucleus Cluster */
+                .nucleus-cluster {
+                    position: absolute;
+                    width: 60px; height: 60px;
+                    left: 120px; top: 120px;
+                    transform-style: preserve-3d;
+                    animation: nucleusFloat 6s infinite ease-in-out;
+                }
+                .nucleus-sphere {
+                    position: absolute;
+                    border-radius: 50%;
+                    box-shadow: inset -5px -5px 15px rgba(0,0,0,0.2), 5px 5px 15px rgba(0,0,0,0.1);
+                }
+                .ns1 { width: 40px; height: 40px; background: radial-gradient(circle at 30% 30%, #ff9999, #e53e3e); left: 10px; top: 10px; z-index: 5; }
+                .ns2 { width: 35px; height: 35px; background: radial-gradient(circle at 30% 30%, #99ccff, #3182ce); left: 25px; top: 5px; transform: translateZ(20px); }
+                .ns3 { width: 35px; height: 35px; background: radial-gradient(circle at 30% 30%, #ff9999, #e53e3e); left: 5px; top: 25px; transform: translateZ(-20px); }
+                .ns4 { width: 30px; height: 30px; background: radial-gradient(circle at 30% 30%, #99ccff, #3182ce); left: 20px; top: 20px; transform: translateZ(10px); }
     
-    with v_col2:
-        # High-Fidelity Dynamic Atom Animation (Reflects 3D Render Style)
-        molecule_html = """
-        <style>
-            .atom-scene {
-                width: 100%;
-                height: 450px;
-                background: #ffffff;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                perspective: 1500px;
-                margin-top: 50px;
-                margin-left: -160px; /* Shifted more left */
-                overflow: hidden;
-            }
-            .atom-wrapper {
-                position: relative;
-                width: 300px;
-                height: 300px;
-                transform-style: preserve-3d;
-            }
-            
-            /* Realistic 3D Nucleus Cluster */
-            .nucleus-cluster {
-                position: absolute;
-                width: 60px; height: 60px;
-                left: 120px; top: 120px;
-                transform-style: preserve-3d;
-                animation: nucleusFloat 6s infinite ease-in-out;
-            }
-            .nucleus-sphere {
-                position: absolute;
-                border-radius: 50%;
-                box-shadow: inset -5px -5px 15px rgba(0,0,0,0.2), 5px 5px 15px rgba(0,0,0,0.1);
-            }
-            .ns1 { width: 40px; height: 40px; background: radial-gradient(circle at 30% 30%, #ff9999, #e53e3e); left: 10px; top: 10px; z-index: 5; }
-            .ns2 { width: 35px; height: 35px; background: radial-gradient(circle at 30% 30%, #99ccff, #3182ce); left: 25px; top: 5px; transform: translateZ(20px); }
-            .ns3 { width: 35px; height: 35px; background: radial-gradient(circle at 30% 30%, #ff9999, #e53e3e); left: 5px; top: 25px; transform: translateZ(-20px); }
-            .ns4 { width: 30px; height: 30px; background: radial-gradient(circle at 30% 30%, #99ccff, #3182ce); left: 20px; top: 20px; transform: translateZ(10px); }
-
-            /* Sync-optimized Orbital System */
-            .orbit-system {
-                position: absolute;
-                width: 300px; height: 300px;
-                transform-style: preserve-3d;
-            }
-            /* 3D Tilts */
-            .tilt1 { transform: rotateX(75deg) rotateY(15deg); }
-            .tilt2 { transform: rotateX(-45deg) rotateY(35deg); }
-            .tilt3 { transform: rotateX(30deg) rotateY(80deg); }
-
-            /* Rotating Ring with Fixed Electron (Perfect Sync) */
-            .rotating-ring {
-                width: 100%; height: 100%;
-                border: 1.2px solid rgba(0, 191, 255, 0.3);
-                border-radius: 50%;
-                position: relative;
-                transform-style: preserve-3d;
-                animation: ringRotate 4s infinite linear;
-            }
-            .electron {
-                position: absolute;
-                width: 14px; height: 14px;
-                background: #ffffff;
-                border-radius: 50%;
-                box-shadow: 0 0 10px #fff, 0 0 20px #00bfff;
-                top: 50%; left: -7px; /* Perfectly centered on the line */
-                margin-top: -7px;
-            }
-            
-            /* Variation in speed and direction */
-            .r1 { animation-duration: 3s; }
-            .r2 { animation-duration: 5s; animation-direction: reverse; }
-            .r3 { animation-duration: 4s; }
-
-            @keyframes ringRotate {
-                from { transform: rotate(0deg); }
-                to { transform: rotate(360deg); }
-            }
-            @keyframes nucleusFloat {
-                0%, 100% { transform: translateY(0px) rotateX(0deg); }
-                50% { transform: translateY(-8px) rotateX(5deg); }
-            }
-        </style>
-        <div class="atom-scene">
-            <div class="atom-wrapper">
-                <div class="nucleus-cluster">
-                    <div class="nucleus-sphere ns1"></div>
-                    <div class="nucleus-sphere ns2"></div>
-                    <div class="nucleus-sphere ns3"></div>
-                    <div class="nucleus-sphere ns4"></div>
+                /* Sync-optimized Orbital System */
+                .orbit-system {
+                    position: absolute;
+                    width: 300px; height: 300px;
+                    transform-style: preserve-3d;
+                }
+                /* 3D Tilts */
+                .tilt1 { transform: rotateX(75deg) rotateY(15deg); }
+                .tilt2 { transform: rotateX(-45deg) rotateY(35deg); }
+                .tilt3 { transform: rotateX(30deg) rotateY(80deg); }
+    
+                /* Rotating Ring with Fixed Electron (Perfect Sync) */
+                .rotating-ring {
+                    width: 100%; height: 100%;
+                    border: 1.2px solid rgba(0, 191, 255, 0.3);
+                    border-radius: 50%;
+                    position: relative;
+                    transform-style: preserve-3d;
+                    animation: ringRotate 4s infinite linear;
+                }
+                .electron {
+                    position: absolute;
+                    width: 14px; height: 14px;
+                    background: #ffffff;
+                    border-radius: 50%;
+                    box-shadow: 0 0 10px #fff, 0 0 20px #00bfff;
+                    top: 50%; left: -7px; /* Perfectly centered on the line */
+                    margin-top: -7px;
+                }
+                
+                /* Variation in speed and direction */
+                .r1 { animation-duration: 3s; }
+                .r2 { animation-duration: 5s; animation-direction: reverse; }
+                .r3 { animation-duration: 4s; }
+    
+                @keyframes ringRotate {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+                @keyframes nucleusFloat {
+                    0%, 100% { transform: translateY(0px) rotateX(0deg); }
+                    50% { transform: translateY(-8px) rotateX(5deg); }
+                }
+            </style>
+            <div class="atom-scene">
+                <div class="atom-wrapper">
+                    <div class="nucleus-cluster">
+                        <div class="nucleus-sphere ns1"></div>
+                        <div class="nucleus-sphere ns2"></div>
+                        <div class="nucleus-sphere ns3"></div>
+                        <div class="nucleus-sphere ns4"></div>
+                    </div>
+                    <div class="orbit-system tilt1"><div class="rotating-ring r1"><div class="electron"></div></div></div>
+                    <div class="orbit-system tilt2"><div class="rotating-ring r2"><div class="electron"></div></div></div>
+                    <div class="orbit-system tilt3"><div class="rotating-ring r3"><div class="electron"></div></div></div>
                 </div>
-                <div class="orbit-system tilt1"><div class="rotating-ring r1"><div class="electron"></div></div></div>
-                <div class="orbit-system tilt2"><div class="rotating-ring r2"><div class="electron"></div></div></div>
-                <div class="orbit-system tilt3"><div class="rotating-ring r3"><div class="electron"></div></div></div>
             </div>
-        </div>
-        """
-        components.html(molecule_html, height=450)
+            """
+            components.html(molecule_html, height=450)
 
     df = load_data(DATA_PATH)
     if df is None:
