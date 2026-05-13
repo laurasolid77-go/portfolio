@@ -1,0 +1,23 @@
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+.env
+.venv/
+venv/
+env/
+.streamlit/secrets.toml
+*.log
+*.tmp
+*.bak
+*.old
+
+# Local backup / non-deploy files
+local_backup/
+
+# Large model files excluded from GitHub deployment
+models/*.pkl
+!models/qmugs_feature_columns.pkl

@@ -1,0 +1,22 @@
+[1] Hugging Face에서 QMugs_Summary 데이터셋 초기화 시도...
+
+[2] 데이터셋 샘플 로드 및 속성 검사...
+발견된 Data 속성/키: ['chembl_id', 'conf_id', 'smiles', 'mw', 'atoms', 'heavy_atoms', 'heteroatoms', 'rotatable_bonds', 'stereocenters', 'rings', 'hbond_acceptors', 'hbond_donors', 'significant_negative_wavenumbers', 'nonunique_smiles', 'GFN2_TOTAL_ENERGY', 'GFN2_ATOMIC_ENERGY', 'GFN2_FORMATION_ENERGY', 'GFN2_TOTAL_ENTHALPY', 'GFN2_TOTAL_FREE_ENERGY', 'GFN2_DIPOLE_X', 'GFN2_DIPOLE_Y', 'GFN2_DIPOLE_Z', 'GFN2_DIPOLE_TOT', 'GFN2_QUADRUPOLE_XX', 'GFN2_QUADRUPOLE_XY', 'GFN2_QUADRUPOLE_YY', 'GFN2_QUADRUPOLE_XZ', 'GFN2_QUADRUPOLE_yz', 'GFN2_QUADRUPOLE_ZZ', 'GFN2_ROT_CONSTANT_A', 'GFN2_ROT_CONSTANT_B', 'GFN2_ROT_CONSTANT_C', 'GFN2_ENTHALPY_VIB', 'GFN2_ENTHALPY_ROT', 'GFN2_ENTHALPY_TRANSL', 'GFN2_ENTHALPY_TOT', 'GFN2_HEAT_CAPACITY_VIB', 'GFN2_HEAT_CAPACITY_ROT', 'GFN2_HEAT_CAPACITY_TRANSL', 'GFN2_HEAT_CAPACITY_TOT', 'GFN2_ENTROPY_VIB', 'GFN2_ENTROPY_ROT', 'GFN2_ENTROPY_TRANSL', 'GFN2_ENTROPY_TOT', 'GFN2_HOMO_ENERGY', 'GFN2_LUMO_ENERGY', 'GFN2_HOMO_LUMO_GAP', 'GFN2_FERMI_LEVEL', 'GFN2_DISPERSION_COEFFICIENT_MOLECULAR', 'GFN2_POLARIZABILITY_MOLECULAR', 'DFT_TOTAL_ENERGY', 'DFT_ATOMIC_ENERGY', 'DFT_FORMATION_ENERGY', 'DFT_DIPOLE_X', 'DFT_DIPOLE_Y', 'DFT_DIPOLE_Z', 'DFT_DIPOLE_TOT', 'DFT_ROT_CONSTANT_A', 'DFT_ROT_CONSTANT_B', 'DFT_ROT_CONSTANT_C', 'DFT_XC_ENERGY', 'DFT_NUCLEAR_REPULSION_ENERGY', 'DFT_ONE_ELECTRON_ENERGY', 'DFT_TWO_ELECTRON_ENERGY', 'DFT_HOMO_ENERGY', 'DFT_LUMO_ENERGY', 'DFT_HOMO_LUMO_GAP']
+
+[통계 결과 - 샘플 5000개 기준]
+- 포함 원소 목록: ['Br', 'C', 'Cl', 'F', 'H', 'I', 'N', 'O', 'P', 'S']
+- B 포함 분자 수: 0 (0.00%)
+- S 포함 분자 수: 1062 (21.24%)
+- MW 분포: Min 127.2, Max 1182.3, Mean 411.7
+- Heavy Atom 분포: Min 8, Max 85, Mean 29.2
+- Ring 분포: Min 0, Max 11, Mean 3.3
+- Aromatic Ring 분포: Min 0, Max 6, Mean 2.4
+
+[Subset 조건 통과 비율]
+- 조건 A (MW<=500, HA<=40, 특정원소): 3832개 통과 (76.64%)
+- 조건 B (MW<=400, HA<=30, 특정원소): 2227개 통과 (44.54%)
+
+[답변 요약]
+- QMugs에서 SMILES를 쉽게 얻을 수 있는가? 예
+- HOMO/LUMO를 쉽게 얻을 수 있는가? 예
+- gap은 직접 제공되는가, 아니면 계산해야 하는가? 직접 제공됨

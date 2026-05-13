@@ -1,5 +1,12 @@
 streamlit
-pubchempy
-rdkit
 pandas
+numpy
+scikit-learn
+joblib
+rdkit
+xgboost
+lightgbm
 plotly
+matplotlib
+pillow
+pubchempy

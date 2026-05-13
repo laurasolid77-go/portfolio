@@ -1,0 +1,26 @@
+{
+    "total_samples": 50000,
+    "feature_count": 22,
+    "train_test_split": "8:2",
+    "random_state": 42,
+    "best_models": {
+        "homo_ev": {
+            "model_name": "XGBRegressor",
+            "MAE": 0.25315311327482454,
+            "RMSE": 0.32281256679377374,
+            "R2": 0.6086646920000107
+        },
+        "lumo_ev": {
+            "model_name": "ExtraTreesRegressor",
+            "MAE": 0.3084989402678711,
+            "RMSE": 0.414505935197452,
+            "R2": 0.7369114115896458
+        },
+        "gap_ev": {
+            "model_name": "ExtraTreesRegressor",
+            "MAE": 0.36260652527006076,
+            "RMSE": 0.49193274445166063,
+            "R2": 0.6703744439291593
+        }
+    }
+}
